@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Island Golf Challenge</title><style>:root{color-scheme:light dark}body{font-family:-apple-system,system-ui,sans-serif;max-width:720px;margin:0 auto;padding:32px 16px;line-height:1.6;background:#fff;color:#111}@media (prefers-color-scheme:dark){body{background:#0d1712;color:#eee}a{color:#f5c93a}}h1{margin-bottom:4px}small{opacity:.7}</style></head><body>
+<h1>⛳️ Island Golf challenge</h1>
+<p id="msg">A friend challenged you to a round of Island Golf.</p>
+<p><a id="open" href="islandgolf://play">Open in Island Golf</a></p>
+<p><small>Don't have the app yet? Island Golf is mini golf on your iPhone Lock Screen — one shot an hour, nine holes a day.</small></p>
+<script>
+const q = new URLSearchParams(location.search);
+const names = {meadow:"Meadow", links:"Sea Links", desert:"Dune Valley", glacier:"Glacier", volcano:"Volcano", moon:"Moon Base"};
+const s = parseInt(q.get("s"), 10), c = names[q.get("c")], d = q.get("d") || "", n = (q.get("n") || "").slice(0, 20);
+if (c && !isNaN(s)) {
+  const par = s === 0 ? "E" : (s > 0 ? "+" + s : "−" + (-s));
+  document.getElementById("msg").textContent = (n || "A friend") + " scored " + par + " on " + c + " (" + d + "). Can you beat it?";
+}
+document.getElementById("open").href = "islandgolf://play" + location.search;
+</script>
+</body></html>
